@@ -1,10 +1,19 @@
 package Models
 
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
+
 type Book struct {
-	ID       uint   `gorm:"primaryKey"`
-	Name     string `gorm:"not null" json:"name"`
-	Category string `gorm:"not null"json:"category"`
-	Author   string `gorm:"not null" json:"author"`
+	ID        uint           `gorm:"primaryKey"`
+	Name      string         `gorm:"not null" json:"name"`
+	Category  string         `gorm:"not null" json:"category"`
+	Author    string         `gorm:"not null" json:"author"`
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
+	DeletedAt gorm.DeletedAt `gorm:"index"`
 	// Author   Author `gorm:"ForeignKey:AuthorID;"json:"-"`
 	// AuthorID uint   `gorm:"not null" json:"-"`
 }
