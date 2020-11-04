@@ -18,7 +18,6 @@ func main() {
 		fmt.Println("status: ", err)
 	}
 	defer Config.DB.Close()
-	Config.DB.AutoMigrate(&Models.Book{})
 	Config.DB.AutoMigrate(&Models.Book{}, &Models.Category{})
 	Config.DB.AutoMigrate(&Models.Book{}).AddForeignKey("category_id", "category(id)", "CASCADE", "CASCADE")
 
