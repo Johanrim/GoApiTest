@@ -6,17 +6,32 @@ import (
 	"gorm.io/gorm"
 )
 
+type User struct {
+	ID        uint           `gorm:"primaryKey" json:"id"`
+	Account   string         `gorm:"not null; unique;" json:"account"`
+	Password  string         `gorm:"not null" json:"password"`
+	Name      string         `gorm:"not null" json:"name"`
+	Age       uint           `gorm:"not null" json:"age"`
+	Phone     string         `gorm:"not null" json:"phone"`
+	Address   string         `gorm:"not null" json:"address"`
+	Email     string         `gorm:"not null" json:"email"`
+	BookID    uint           `gorm:"not null" json:"book"`
+	Book      []Book         `gorm:"ForeignKey:BookID;" json:"-"`
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
+	DeletedAt gorm.DeletedAt `gorm:"index"`
+}
+
 type Book struct {
-	ID   uint   `gorm:"primaryKey"`
-	Name string `gorm:"not null" json:"name"`
-	// Category string `gorm:"not null" json:"category"`
+	ID         uint           `gorm:"primaryKey"`
+	Name       string         `gorm:"not null" json:"name"`
 	CategoryID uint           `gzorm:"not null" json:"category"`
 	Category   Category       `gorm:"ForeignKey:CategoryID;" json:"-"`
 	CreatedAt  time.Time      `json:"created_at"`
 	UpdatedAt  time.Time      `json:"updated_at"`
 	DeletedAt  gorm.DeletedAt `gorm:"index"`
+	// AuthorID   uint           `gorm:"not null" json:"author"`
 	// Author     Author         `gorm:"ForeignKey:AuthorID;"json:"-"`
-	// AuthorID   uint           `gorm:"not null" json:"-"`
 }
 
 func (b *Book) TableName() string {
