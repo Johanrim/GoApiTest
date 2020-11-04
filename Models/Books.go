@@ -17,7 +17,6 @@ func CreateOneBook(b *Book) (err error) {
 	if err = Config.DB.Create(b).Error; err != nil {
 		return err
 	}
-	fmt.Println(b)
 	return nil
 }
 
@@ -30,11 +29,15 @@ func GetOneBook(b *Book, id string) (err error) {
 
 func UpdateOneBook(b *Book, id string) (err error) {
 	fmt.Println(b)
-	Config.DB.Save(b)
+	if err = Config.DB.Save(b).Error; err != nil {
+		return err
+	}
 	return nil
 }
 
 func DeleteOneBook(b *Book, id string) (err error) {
-	Config.DB.Where("id = ?", id).Delete(b)
+	if err = Config.DB.Where("id = ?", id).Delete(b).Error; err != nil {
+		return err
+	}
 	return nil
 }

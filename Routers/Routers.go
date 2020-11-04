@@ -15,6 +15,14 @@ func SetUpRouter() *gin.Engine {
 		v1.PUT("book/:id", Controllers.UpdateOneBook)
 		v1.DELETE("book/:id", Controllers.DeleteOneBook)
 	}
+	v2 := r.Group("/")
+	{
+		v2.GET("category", Controllers.ListCategory)
+		v2.POST("category", Controllers.CreateOneCategory)
+		v2.GET("category/:id", Controllers.GetOneCategory)
+		v2.PUT("category/:id", Controllers.UpdateOneCategory)
+		v2.DELETE("category/:id", Controllers.DeleteOneCategory)
+	}
 
 	// v2 := r.Group("/author/")
 	// {

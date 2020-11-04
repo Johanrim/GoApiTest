@@ -19,8 +19,8 @@ func main() {
 	}
 	defer Config.DB.Close()
 	Config.DB.AutoMigrate(&Models.Book{})
-	// Config.DB.AutoMigrate(&Models.Book{}, &Models.Author{})
-	// Config.DB.AutoMigrate(&Models.Book{}).AddForeignKey("author_id", "author(id)", "RESTRICT", "RESTRICT")
+	Config.DB.AutoMigrate(&Models.Book{}, &Models.Category{})
+	Config.DB.AutoMigrate(&Models.Book{}).AddForeignKey("category_id", "category(id)", "CASCADE", "CASCADE")
 
 	r := Routers.SetUpRouter()
 	r.Run()
