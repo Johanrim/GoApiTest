@@ -1,6 +1,8 @@
 package Controllers
 
 import (
+	"fmt"
+
 	"github.com/Johanrim/example-web/Models"
 	"github.com/Johanrim/example-web/Response"
 	"github.com/gin-gonic/gin"
@@ -34,6 +36,7 @@ func GetOneBook(c *gin.Context) {
 	if err != nil {
 		Response.ErrorRespondJSON(c, 404, err)
 	} else {
+		fmt.Println(book)
 		Response.RespondJSON(c, 200, book)
 	}
 }

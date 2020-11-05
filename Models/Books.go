@@ -6,6 +6,9 @@ import (
 	"github.com/Johanrim/example-web/Config"
 )
 
+type result struct {
+}
+
 func GetAllBook(b *[]Book) (err error) {
 	if err = Config.DB.Find(b).Error; err != nil {
 		return err

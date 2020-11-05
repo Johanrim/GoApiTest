@@ -22,7 +22,6 @@ func RespondJSON(w *gin.Context, status int, payload interface{}) {
 	var res ResponseData
 	res.Status = status
 	res.Data = payload
-	fmt.Println(payload)
 	w.JSON(200, res)
 }
 

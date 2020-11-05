@@ -23,10 +23,14 @@ func SetUpRouter() *gin.Engine {
 		v2.PUT("category/:id", Controllers.UpdateOneCategory)
 		v2.DELETE("category/:id", Controllers.DeleteOneCategory)
 	}
+	v3 := r.Group("/")
+	{
+		v3.GET("user", Controllers.ListUser)
+		v3.POST("user", Controllers.CreateOneUser)
+		v3.GET("user/:id", Controllers.GetOneUser)
+		v3.PUT("user/:id", Controllers.UpdateOneUser)
+		v3.DELETE("user/:id", Controllers.DeleteOneUser)
+	}
 
-	// v2 := r.Group("/author/")
-	// {
-	// 	v2.GET("", Controller.)
-	// }
 	return r
 }
